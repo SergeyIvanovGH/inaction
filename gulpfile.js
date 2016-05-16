@@ -8,7 +8,7 @@ var gulp = require("gulp"),//http://gulpjs.com/
 
 var cssTarget = "src/main/webapp/resources/css/";
 
-gulp.task("default", ["sass"]);
+gulp.task("default", ["sass", "copy_icon"]);
 
 gulp.task("sass", function () {
     log("Generating CSS files " + (new Date()).toString());
@@ -24,4 +24,9 @@ gulp.task("sass", function () {
 gulp.task("watch", function () {
     log("Watching scss files for modifications");
     gulp.watch(sassFiles, ["sass"]);
+});
+
+gulp.task("copy_icon", function () {
+    gulp.src("node_modules/material-design-icons/action/1x_web/ic_3d_rotation_black_48dp.png")
+        .pipe(gulp.dest("src/main/webapp/resources/images/"));
 });
